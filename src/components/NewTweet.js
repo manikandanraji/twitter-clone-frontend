@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
+import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import { useMutation } from "@apollo/react-hooks";
 import useInput from "../hooks/useInput";
@@ -10,7 +12,6 @@ import Avatar from "../styles/Avatar";
 import { NEW_TWEET } from "../queries";
 import { CLOUDINARY_URL } from "../config";
 import { displayError } from "../utils";
-import { toast } from "react-toastify";
 
 const Wrapper = styled.div`
 	display: flex;
@@ -94,13 +95,32 @@ const NewTweet = () => {
 		data.append("file", e.target.files[0]);
 		data.append("upload_preset", "twitter-build");
 
-		const res = await fetch(`${CLOUDINARY_URL}`, {
-			method: "POST",
-			body: data
-		});
-		const file = await res.json();
+		let toastId = null;
 
-		setTweetFiles([...tweetFiles, file.secure_url]);
+		const {
+			data: { secure_url }
+		} = await axios.request({
+			method: "POST",
+			url: CLOUDINARY_URL,
+			data,
+			onUploadProgress: p => {
+				const progress = p.loaded / p.total;
+
+				if (toastId === null) {
+					toastId = toast("Upload in progress", {
+						progress: progress,
+						bodyClassName: "upload-progress-bar"
+					});
+				} else {
+					toast.update(toastId, {
+						progress: progress
+					});
+				}
+			}
+		});
+
+		setTweetFiles([...tweetFiles, secure_url]);
+		toast.dismiss(toastId);
 	};
 
 	return (
@@ -117,9 +137,7 @@ const NewTweet = () => {
 						onChange={tweet.onChange}
 					/>
 
-					{tweetFiles[0] && (
-						<img className="img-preview" src={tweetFiles[0]} alt="preview" />
-					)}
+					{tweetFiles[0] && <img class="img-preview" src={tweetFiles[0]} alt="preview" />}
 
 					<div className="new-tweet-action">
 						<div className="svg-input">

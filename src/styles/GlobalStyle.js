@@ -51,6 +51,11 @@ export default createGlobalStyle`
 
 	.toast-style {
 		background: ${props => props.theme.accentColor};
+		font-family: ${props => props.theme.font};
+	}
+
+	.upload-progress-bar {
+		color: #FFF;
 	}
 
 	textarea {
