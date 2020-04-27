@@ -30,7 +30,7 @@ export default ({ type = "text", text, value, onChange, placeholder }) => {
 	return (
 		<Wrapper>
 			<label>{text}</label>
-			<input type={type} value={value} onChange={onChange} />
+			<input autoComplete="new-password" type={type} placeholder={placeholder} value={value} onChange={onChange} />
 		</Wrapper>
 	);
 };

@@ -48,4 +48,23 @@ export default createGlobalStyle`
   button:focus, textarea:focus, input:focus{
     outline: none;
   }
+
+	.toast-style {
+		background: ${props => props.theme.accentColor};
+	}
+
+	textarea {
+		resize: none;
+		overflow: hidden;
+	}
+
+	button:disabled,
+	button[disabled]{
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.svg-input > input {
+		display: none;
+	}
 `;

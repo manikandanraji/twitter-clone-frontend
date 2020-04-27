@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
+import { useQuery } from "@apollo/react-hooks";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import GlobalStyle from "./styles/GlobalStyle";
 import { ThemeContext } from "./context/ThemeContext";
-import Router from './Route';
-import Auth from './components/Auth/Auth';
+import Router from "./Route";
+import Auth from "./components/Auth/Auth";
+import { USER_LOGGED_IN } from "./queries";
 
 const App = () => {
 	const { theme } = useContext(ThemeContext);
 
-	const loggedIn = false;
+	const {
+		data: { isLoggedIn }
+	} = useQuery(USER_LOGGED_IN);
 
 	return (
 		<StyledThemeProvider theme={theme}>
@@ -17,7 +23,13 @@ const App = () => {
 				primaryColor={theme.primaryColor}
 				font={theme.font}
 			/>
-			{ loggedIn ? <Router /> : <Auth />}
+			<ToastContainer
+				toastClassName="toast-style"
+				autoClose={2000}
+				closeButton={false}
+				draggable={false}
+			/>
+			{isLoggedIn ? <Router /> : <Auth />}
 		</StyledThemeProvider>
 	);
 };

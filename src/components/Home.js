@@ -1,15 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import NewTweet from "./NewTweet";
+import Header from './Header';
 
 const Wrapper = styled.div`
-	padding: 1rem;
 	margin-bottom: 1000px;
 `;
 
 const Home = () => {
 	return (
-		<Wrapper>This is the home component</Wrapper>
-  )
-}
+		<Wrapper>
+			<Header text="Home"/>
+			<NewTweet />
+		</Wrapper>
+	);
+};
 
 export default Home;

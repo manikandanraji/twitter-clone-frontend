@@ -8,7 +8,7 @@ import Profile from "./components/Profile";
 import Bookmarks from "./components/Bookmarks";
 import Notifications from "./components/Notifications";
 import Explore from "./components/Explore";
-import Suggestion from "./components/Suggestion";
+import Suggestion from './components/Suggestion';
 
 const AppRouter = () => {
 	return (

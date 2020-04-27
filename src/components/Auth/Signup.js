@@ -1,8 +1,12 @@
 import React from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { toast } from "react-toastify";
 import useInput from "../../hooks/useInput";
 import Input from ".././Input";
 import Button from "../../styles/Button";
-import { Form } from './Auth';
+import { Form } from "./Auth";
+import { SIGNUP } from "../../queries";
+import { displayError } from '../../utils';
 
 export default ({ changeToLogin }) => {
 	const firstname = useInput("");
@@ -11,26 +15,51 @@ export default ({ changeToLogin }) => {
 	const email = useInput("");
 	const password = useInput("");
 
-	const handleLogin = e => {
+	const [signupMutation, { loading }] = useMutation(SIGNUP, {
+		update: (cache, { data: { signup } }) => {
+			localStorage.setItem('token', signup.token);
+			cache.writeData({
+				data: { isLoggedIn: true }
+			})
+		}
+	});
+
+	const handleSignup = async e => {
 		e.preventDefault();
 
-		console.log(
-			email.value,
-			password.value,
-			handle.value,
-			firstname.value,
-			lastname.value
-		);
+		if (
+			!firstname.value ||
+			!lastname.value ||
+			!handle.value ||
+			!email.value ||
+			!password.value
+		) {
+			return toast.error("You need to fill in all the fields 😈");
+		}
 
-		firstname.setValue("");
-		lastname.setValue("");
-		handle.setValue("");
-		email.setValue("");
-		password.setValue("");
+		try {
+			await signupMutation({
+				variables: {
+					firstname: firstname.value,
+					lastname: lastname.value,
+					handle: handle.value,
+					email: email.value,
+					password: password.value
+				}
+			});
+
+			toast.success("You are logged in 🥳");
+		} catch (err) {
+			return displayError(err);
+		}
+
+		[firstname, lastname, handle, email, password].map(field =>
+			field.setValue("")
+		);
 	};
 
 	return (
-		<Form onSubmit={handleLogin}>
+		<Form onSubmit={handleSignup}>
 			<div className="group-input">
 				<Input
 					text="First Name"
@@ -58,8 +87,8 @@ export default ({ changeToLogin }) => {
 					onChange={password.onChange}
 				/>
 			</div>
-			<Button outline type="submit">
-				Signup
+			<Button outline disabled={loading} type="submit">
+				{loading ? "Signing in" : "Sign up"}
 			</Button>
 			<span>or</span>
 			<Button type="button" onClick={changeToLogin}>

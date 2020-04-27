@@ -1,18 +1,12 @@
 import styled from "styled-components";
 
 export default styled.div`
-	margin-left: 15%;
+	margin-left: 17.6%;
 	display: grid;
-	grid-template-columns: auto 40%;
-	grid-gap: 2rem;
+	grid-template-columns: 65% auto;
 
-	@media screen and (max-width: 1100px) {
-		margin-left: 12%;
-	}
-
-	@media screen and (max-width: 530px) {
-		margin-left: none;
+	@media screen and (max-width: 1110px) {
+		margin-left: 10%;
 		grid-template-columns: 1fr;
-		grid-gap: none;
 	}
 `;

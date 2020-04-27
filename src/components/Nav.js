@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Logout from "./Logout";
 import { NavLink } from "react-router-dom";
 import {
 	Logo,
@@ -11,7 +12,7 @@ import {
 } from "./Icons";
 
 const Wrapper = styled.nav`
-	width: 200px;
+	width: 17.6%;
 	padding: 1rem;
 	border-right: 1px solid ${props => props.theme.tertiaryColor};
 	height: 100vh;
@@ -43,7 +44,7 @@ const Wrapper = styled.nav`
 	}
 
 	@media screen and (max-width: 1110px) {
-		width: 70px;
+		width: 10%;
 
 		span {
 			display: none;
@@ -89,6 +90,9 @@ const Nav = () => {
 					<NavLink activeClassName="selected" to="/jakeperalta">
 						<ProfileIcon /> <span>Profile</span>
 					</NavLink>
+				</li>
+				<li>
+					<Logout />
 				</li>
 			</ul>
 		</Wrapper>

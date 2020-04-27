@@ -1,8 +1,26 @@
-import ApolloClient from 'apollo-boost';
-import {  GRAPHQL_PORT } from '../config';
+import ApolloClient from "apollo-boost";
+import { InMemoryCache } from "apollo-boost";
+import { GRAPHQL_SERVER } from "../config";
+
+const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-	uri: GRAPHQL_PORT
+	cache,
+	uri: GRAPHQL_SERVER,
+	request: operation => {
+		const token = localStorage.getItem("token");
+		operation.setContext({
+			headers: {
+				Authorization: token ? token : ''
+			}
+		});
+	},
+});
+
+cache.writeData({
+	data: {
+		isLoggedIn: !!localStorage.getItem("token")
+	}
 });
 
 export default client;

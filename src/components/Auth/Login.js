@@ -1,18 +1,48 @@
 import React from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { toast } from "react-toastify";
 import useInput from "../../hooks/useInput";
 import Input from ".././Input";
 import Button from "../../styles/Button";
-import { Form } from './Auth';
+import { Form } from "./Auth";
+import { LOGIN } from "../../queries";
+import { displayError } from "../../utils";
 
 export default ({ changeToSignup }) => {
 	const email = useInput("");
 	const password = useInput("");
 
-	const handleLogin = e => {
+	const [loginMutation, { loading }] = useMutation(LOGIN, {
+		update: (cache, { data: { login } }) => {
+			localStorage.setItem("token", login.token);
+			cache.writeData({
+				data: {
+					isLoggedIn: true
+				}
+			});
+		}
+	});
+
+	const handleLogin = async e => {
 		e.preventDefault();
-		console.log(email.value, password.value);
-		email.setValue("");
-		password.setValue("");
+
+		if (!email.value || !password.value) {
+			return toast.error("You need to fill all the fields 😈");
+		}
+
+		try {
+			await loginMutation({
+				variables: {
+					email: email.value,
+					password: password.value
+				}
+			});
+			toast.success("You are logged in 🥳");
+		} catch (err) {
+			return displayError(err);
+		}
+
+		[email, password].map(field => field.setValue(""));
 	};
 
 	return (
@@ -29,8 +59,8 @@ export default ({ changeToSignup }) => {
 				value={password.value}
 				onChange={password.onChange}
 			/>
-			<Button outline type="submit">
-				Login
+			<Button outline disabled={loading} type="submit">
+				{loading ? "Logging in" : "Login"}
 			</Button>
 			<span>or</span>
 			<Button type="button" onClick={changeToSignup}>
