@@ -21,10 +21,10 @@ export const LOGIN = gql`
 
 export const SIGNUP = gql`
 	mutation signup(
-		$firstname: String! 
-		$lastname: String! 
-		$handle: String! 
-		$email: String! 
+		$firstname: String!
+		$lastname: String!
+		$handle: String!
+		$email: String!
 		$password: String!
 	) {
 		signup(
@@ -44,13 +44,33 @@ export const SIGNUP = gql`
 `;
 
 export const NEW_TWEET = gql`
-	mutation newTweet($text: String! $files: [String!]! $tags: [String!]!) {
-		newTweet(
-			text: $text
-			files: $files
-			tags: $tags
-		) {
+	mutation newTweet($text: String!, $files: [String!]!, $tags: [String!]!) {
+		newTweet(text: $text, files: $files, tags: $tags) {
 			id
+		}
+	}
+`;
+
+export const FEED = gql`
+	query feed {
+		feed {
+			id
+			text
+			tags
+			likesCount
+			retweetsCount
+			commentsCount
+			files {
+				id
+				url
+			}
+			user {
+				id
+				avatar
+				handle
+				fullname
+			}
+			createdAt
 		}
 	}
 `;

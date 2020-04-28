@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
 	border-left: 1px solid ${props => props.theme.tertiaryColor};
-	height: 100vh;
 	padding: 1rem;
 
 	@media screen and (max-width: 1110px) {

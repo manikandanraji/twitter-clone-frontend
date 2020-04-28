@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import FeedList from "./FeedList";
 import NewTweet from "./NewTweet";
-import Header from './Header';
+import Header from "./Header";
 
 const Wrapper = styled.div`
-	margin-bottom: 1000px;
 `;
 
 const Home = () => {
 	return (
 		<Wrapper>
-			<Header text="Home"/>
+			<Header text="Home" />
 			<NewTweet />
+			<FeedList />
 		</Wrapper>
 	);
 };

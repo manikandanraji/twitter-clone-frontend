@@ -1,17 +1,7 @@
 import React, { useState, useContext } from "react";
-import styled from "styled-components";
-import { ThemeIcon } from "./Icons";
 import { ThemeContext } from "../context/ThemeContext";
 import { lightTheme, darkTheme } from "../styles/themes";
-
-const Wrapper = styled.button`
-	background: none;
-	border: none;
-	position: absolute;
-	left: 90%;
-	top: 5%;
-	cursor: pointer;
-`;
+import Button from "../styles/Button";
 
 const ToggleTheme = () => {
 	const [currentTheme, setCurrentTheme] = useState("dark");
@@ -35,9 +25,9 @@ const ToggleTheme = () => {
 	};
 
 	return (
-		<Wrapper onClick={onClick}>
-			<ThemeIcon />
-		</Wrapper>
+		<Button sm onClick={onClick}>
+			Change Theme
+		</Button>
 	);
 };
 

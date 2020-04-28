@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logout from "./Logout";
 import { NavLink } from "react-router-dom";
+import ToggleTheme from "./ToggleTheme";
 import {
 	Logo,
 	HomeIcon,
@@ -93,6 +94,9 @@ const Nav = () => {
 				</li>
 				<li>
 					<Logout />
+				</li>
+				<li style={{display: 'none'}}>
+					<ToggleTheme />
 				</li>
 			</ul>
 		</Wrapper>

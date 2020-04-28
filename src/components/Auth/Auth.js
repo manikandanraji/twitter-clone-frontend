@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ToggleTheme from ".././ToggleTheme";
 import Login from './Login';
 import Signup from './Signup';
 
@@ -43,7 +42,6 @@ const Auth = () => {
 
 	return (
 		<>
-			<ToggleTheme />
 			{authAction === "LOGIN" ? (
 				<Login changeToSignup={changeToSignup} />
 			) : (
