@@ -69,6 +69,7 @@ export default createGlobalStyle`
 		cursor: not-allowed;
 	}
 
+	// using svg as input icon
 	.svg-input > input {
 		display: none;
 	}

@@ -31,7 +31,6 @@ const Wrapper = styled.nav`
 
 	.logo {
 		margin-bottom: 1.3rem;
-		cursor: pointer;
 	}
 
 	li {
@@ -95,7 +94,7 @@ const Nav = () => {
 				<li>
 					<Logout />
 				</li>
-				<li style={{display: 'none'}}>
+				<li style={{display: ''}}>
 					<ToggleTheme />
 				</li>
 			</ul>

@@ -17,3 +17,6 @@ Build with React + Styled Components
 
 ## Layout
 Tabs(350px) + Active Tab(600px) + Suggestion, Search Bar(300px)
+
+## Svg
+Fold the svg tags when reading what the icon does as it is too noisy.

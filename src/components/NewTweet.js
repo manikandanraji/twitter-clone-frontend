@@ -9,7 +9,7 @@ import { IMAGE } from "../config";
 import Button from "../styles/Button";
 import { UploadFileIcon } from "./Icons";
 import Avatar from "../styles/Avatar";
-import { NEW_TWEET } from "../queries";
+import { NEW_TWEET, FEED } from "../queries";
 import { CLOUDINARY_URL } from "../config";
 import { displayError } from "../utils";
 
@@ -63,7 +63,11 @@ const NewTweet = () => {
 	const [tweetFiles, setTweetFiles] = useState([]);
 	const tweet = useInput("");
 
-	const [newTweetMutation, { loading }] = useMutation(NEW_TWEET);
+	const [newTweetMutation, { loading }] = useMutation(NEW_TWEET, {
+		refetchQueries: [
+			{ query: FEED }
+		]
+	});
 
 	const handleNewTweet = async e => {
 		e.preventDefault();
@@ -81,7 +85,7 @@ const NewTweet = () => {
 				}
 			});
 
-			toast.success("Your tweet has been posted ");
+			toast.success("Your tweet has been posted 🥳");
 		} catch (err) {
 			return displayError(err);
 		}

@@ -8,10 +8,6 @@ const Wrapper = styled.div`
 	font-weight: 500;
 `;
 
-const Header = ({ text }) => (
-	<Wrapper>
-		<span>{text}</span>
-	</Wrapper>
-);
+const Header = ({ children }) => <Wrapper>{children}</Wrapper>;
 
 export default Header;
