@@ -100,6 +100,69 @@ export const TOGGLE_LIKE = gql`
 
 export const TOGGLE_RETWEET = gql`
 	mutation toggleRetweet($id: ID!) {
-		toggleRetweet(id: $id) 
+		toggleRetweet(id: $id)
+	}
+`;
+
+export const TWEET = gql`
+	query tweet($id: ID!) {
+		tweet(id: $id) {
+			id
+			text
+			tags
+			user {
+				id
+				fullname
+				handle
+				avatar
+			}
+			files {
+				id
+				url
+			}
+			likesCount
+			commentsCount
+			retweetsCount
+			isLiked
+			isRetweet
+			comments {
+				id
+				text
+				isCommentMine
+				user {
+					id
+					fullname
+					handle
+					avatar
+				}
+				createdAt
+			}
+			createdAt
+		}
+	}
+`;
+
+export const ADD_COMMENT = gql`
+	mutation addComment($id: ID!, $text: String!) {
+		addComment(id: $id, text: $text) {
+			id
+			text
+			isCommentMine
+			user {
+				id
+				handle
+				avatar
+				fullname
+			}
+			createdAt
+		}
+	}
+`;
+
+export const DELETE_COMMENT = gql`
+	mutation deleteComment($id: ID!) {
+		deleteComment(id: $id) {
+			id
+		}
 	}
 `;

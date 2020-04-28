@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
 import Avatar from "../styles/Avatar";
@@ -96,6 +97,7 @@ const Tweet = ({ tweet }) => {
 
 	const strList = text.split(" ");
 	const processedText = strList.filter(str => !str.startsWith("#")).join(" ");
+	const handle = user && user.handle;
 
 	return (
 		<Wrapper>
@@ -103,13 +105,13 @@ const Tweet = ({ tweet }) => {
 			<div className="tweet-info">
 				<div className="tweet-info-user">
 					<span className="username">{user && user.fullname}</span>
-					<span className="secondary">{user && `@${user.handle}`}</span>
-					<span className="secondary">
-						{moment(createdAt).startOf("hour").fromNow()}
-					</span>
+					<span className="secondary">{`@${handle}`}</span>
+					<span className="secondary">{moment(createdAt).fromNow()}</span>
 				</div>
 
-				<p>{processedText}</p>
+				<Link to={`/${handle}/status/${id}`}>
+					<p>{processedText}</p>
+				</Link>
 
 				<div className="tags">
 					{tags && tags.length
@@ -121,15 +123,19 @@ const Tweet = ({ tweet }) => {
 						: null}
 				</div>
 
-				{files && files.length && files[0] ? (
-					<img className="tweet-file" src={files[0].url} alt="tweet-file" />
-				) : null}
+				<Link to={`/${handle}/status/${id}`}>
+					{files && files.length && files[0] ? (
+						<img className="tweet-file" src={files[0].url} alt="tweet-file" />
+					) : null}
+				</Link>
 
 				<div className="tweet-stats">
 					<div>
 						<span>
-							<CommentIcon />
-							{commentsCount ? commentsCount : null}
+							<Link to={`/${handle}/status/${id}`}>
+								<CommentIcon />
+								{commentsCount ? commentsCount : null}
+							</Link>
 						</span>
 					</div>
 

@@ -161,5 +161,3 @@ const NewTweet = () => {
 };
 
 export default NewTweet;
-
-// 142w, 286h

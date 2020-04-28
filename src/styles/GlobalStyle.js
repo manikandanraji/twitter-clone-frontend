@@ -73,4 +73,8 @@ export default createGlobalStyle`
 	.svg-input > input {
 		display: none;
 	}
+
+	.global-border {
+		border-left: ${props => props.theme.tertiaryColor};
+	}
 `;

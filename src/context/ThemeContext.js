@@ -4,7 +4,8 @@ export const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
 	const [theme, setTheme] = useState({
-		background: "#192734",
+		background: "#15202b",
+		bgHover: "#192734",
 		primaryColor: "#FFF",
 		secondaryColor: "#8899a6",
 		// accentColor: "#CA2055",

@@ -4,7 +4,8 @@ import FeedList from "./FeedList";
 import NewTweet from "./NewTweet";
 import Header from "./Header";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+`;
 
 const Home = () => {
 	return (
