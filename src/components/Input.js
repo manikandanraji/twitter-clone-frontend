@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
 	width: 315px;
@@ -24,13 +24,32 @@ const Wrapper = styled.div`
 		color: ${props => props.theme.secondaryColor};
 		margin-bottom: 2px;
 	}
+
+	${props =>
+		props.lg &&
+		css`
+			width: 100%;
+		`}
 `;
 
-export default ({ type = "text", text, value, onChange, placeholder }) => {
+export default ({
+	lg = false,
+	type = "text",
+	text,
+	value,
+	onChange,
+	placeholder
+}) => {
 	return (
-		<Wrapper>
+		<Wrapper lg={lg}>
 			<label>{text}</label>
-			<input autoComplete="new-password" type={type} placeholder={placeholder} value={value} onChange={onChange} />
+			<input
+				autoComplete="new-password"
+				type={type}
+				placeholder={placeholder}
+				value={value}
+				onChange={onChange}
+			/>
 		</Wrapper>
 	);
 };

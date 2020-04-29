@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import Avatar from "../styles/Avatar";
-import { NOAVATAR } from "../config";
-import DeleteComment from './DeleteComment';
+import DeleteComment from "./DeleteComment";
 
 const Wrapper = styled.div`
 	display: flex;
@@ -31,29 +31,21 @@ const Wrapper = styled.div`
 `;
 
 const Comment = ({ comment }) => {
-	const {
-		id,
-		text,
-		isCommentMine,
-		user,
-		createdAt
-	} = comment;
+	const { id, text, isCommentMine, user, createdAt } = comment;
 
 	const handle = user && user.handle;
 
 	return (
 		<Wrapper>
-			<Avatar src={NOAVATAR} alt="avatar" />
+			<Avatar src={user && user.avatar} alt="avatar" />
 			<div className="comment-info">
 				<div className="comment-info-user">
-					<span className="username">{user && user.fullname}</span>
+					<Link to={`/${handle}`}>
+						<span className="username">{user && user.fullname}</span>
+					</Link>
 					<span className="secondary">{`@${handle}`}</span>
-					<span className="secondary">
-						{moment(createdAt).fromNow()}
-					</span>
-					<span>
-						{ isCommentMine ? <DeleteComment id={id}/> : null}
-					</span>
+					<span className="secondary">{moment(createdAt).fromNow()}</span>
+					<span>{isCommentMine ? <DeleteComment id={id} /> : null}</span>
 				</div>
 
 				<p>{text}</p>

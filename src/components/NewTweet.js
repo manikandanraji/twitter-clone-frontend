@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
-import { useMutation } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import useInput from "../hooks/useInput";
-import { IMAGE } from "../config";
 import Button from "../styles/Button";
 import { UploadFileIcon } from "./Icons";
-import Avatar from "../styles/Avatar";
 import { NEW_TWEET, FEED } from "../queries";
 import { CLOUDINARY_URL } from "../config";
 import { displayError } from "../utils";
+import { USER } from "../queries";
+import Avatar from "../styles/Avatar";
 
 const Wrapper = styled.div`
 	display: flex;
@@ -64,9 +64,7 @@ const NewTweet = () => {
 	const tweet = useInput("");
 
 	const [newTweetMutation, { loading }] = useMutation(NEW_TWEET, {
-		refetchQueries: [
-			{ query: FEED }
-		]
+		refetchQueries: [{ query: FEED }]
 	});
 
 	const handleNewTweet = async e => {
@@ -127,10 +125,13 @@ const NewTweet = () => {
 		toast.dismiss(toastId);
 	};
 
+	const {
+		data: { user }
+	} = useQuery(USER);
+
 	return (
 		<Wrapper>
-			<Avatar src={IMAGE} alt="user avatar" />
-
+			<Avatar src={user.avatar} alt="avatar" />
 			<form onSubmit={handleNewTweet}>
 				<div className="new-tweet">
 					<TextareaAutosize
@@ -141,7 +142,9 @@ const NewTweet = () => {
 						onChange={tweet.onChange}
 					/>
 
-					{tweetFiles[0] && <img class="img-preview" src={tweetFiles[0]} alt="preview" />}
+					{tweetFiles[0] && (
+						<img class="img-preview" src={tweetFiles[0]} alt="preview" />
+					)}
 
 					<div className="new-tweet-action">
 						<div className="svg-input">

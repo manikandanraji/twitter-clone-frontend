@@ -70,7 +70,7 @@ export default createGlobalStyle`
 	}
 
 	// using svg as input icon
-	.svg-input > input {
+	.svg-input > input, .avatar-input > input, .cover-photo > input {
 		display: none;
 	}
 

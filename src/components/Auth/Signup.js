@@ -17,9 +17,13 @@ export default ({ changeToLogin }) => {
 
 	const [signupMutation, { loading }] = useMutation(SIGNUP, {
 		update: (cache, { data: { signup } }) => {
-			localStorage.setItem('token', signup.token);
+			localStorage.setItem("token", signup.token);
+			localStorage.setItem("user", JSON.stringify(signup.user));
 			cache.writeData({
-				data: { isLoggedIn: true }
+				data: {
+					isLoggedIn: true,
+					user: JSON.parse(localStorage.getItem("user"))
+				}
 			})
 		}
 	});
@@ -59,7 +63,7 @@ export default ({ changeToLogin }) => {
 	};
 
 	return (
-		<Form onSubmit={handleSignup}>
+		<Form center onSubmit={handleSignup}>
 			<div className="group-input">
 				<Input
 					text="First Name"

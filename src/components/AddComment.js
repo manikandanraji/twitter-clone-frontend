@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import TextareaAutosize from "react-textarea-autosize";
-import { useMutation } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import useInput from "../hooks/useInput";
-import { IMAGE } from "../config";
 import Button from "../styles/Button";
-import Avatar from "../styles/Avatar";
-import { TWEET, ADD_COMMENT } from "../queries";
+import { USER, TWEET, ADD_COMMENT } from "../queries";
 import { displayError } from "../utils";
+import Avatar from '../styles/Avatar';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -81,9 +80,11 @@ const AddComment = ({ id }) => {
 		comment.setValue("");
 	};
 
+	const { data: { user } } = useQuery(USER);
+
 	return (
 		<Wrapper>
-			<Avatar src={IMAGE} alt="user avatar" />
+			<Avatar src={user.avatar} alt="avatar"/>
 
 			<form onSubmit={handleAddComment}>
 				<div className="add-comment">

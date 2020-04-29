@@ -15,9 +15,12 @@ export default ({ changeToSignup }) => {
 	const [loginMutation, { loading }] = useMutation(LOGIN, {
 		update: (cache, { data: { login } }) => {
 			localStorage.setItem("token", login.token);
+			localStorage.setItem("user", JSON.stringify(login.user));
+
 			cache.writeData({
 				data: {
-					isLoggedIn: true
+					isLoggedIn: true,
+					user: JSON.parse(localStorage.getItem("user"))
 				}
 			});
 		}
@@ -37,7 +40,8 @@ export default ({ changeToSignup }) => {
 					password: password.value
 				}
 			});
-			toast.success("You are logged in 🥳");
+
+			toast.success(`You are logged in 🥳`);
 		} catch (err) {
 			return displayError(err);
 		}
@@ -46,7 +50,7 @@ export default ({ changeToSignup }) => {
 	};
 
 	return (
-		<Form onSubmit={handleLogin}>
+		<Form center onSubmit={handleLogin}>
 			<Input
 				text="Email"
 				type="email"
@@ -59,6 +63,7 @@ export default ({ changeToSignup }) => {
 				value={password.value}
 				onChange={password.onChange}
 			/>
+
 			<Button outline disabled={loading} type="submit">
 				{loading ? "Logging in" : "Login"}
 			</Button>

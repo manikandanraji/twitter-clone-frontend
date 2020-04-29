@@ -7,12 +7,13 @@ const Logout = () => {
 	const client = new useApolloClient();
 
 	const handleLogout = () => {
-		localStorage.removeItem('token');
+		localStorage.clear();
 		client.writeData({
 			data: {
 				isLoggedIn: false
 			}
 		})
+		window.location = "/";
 		toast.success('You are logged out.');
 	}
 

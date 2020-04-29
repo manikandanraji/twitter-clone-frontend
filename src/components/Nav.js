@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useQuery } from '@apollo/react-hooks';
 import Logout from "./Logout";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ToggleTheme from "./ToggleTheme";
+import { USER } from '../queries';
 import {
 	Logo,
 	HomeIcon,
@@ -60,12 +62,16 @@ const Wrapper = styled.nav`
 `;
 
 const Nav = () => {
+	const { data: { user } } = useQuery(USER);
+
 	return (
 		<Wrapper>
 			<ul>
-				<h3 className="logo">
-					<Logo />
-				</h3>
+				<Link to="/">
+					<h3 className="logo">
+						<Logo />
+					</h3>
+				</Link>
 				<li>
 					<NavLink exact activeClassName="selected" to="/">
 						<HomeIcon /> <span>Home</span>
@@ -87,14 +93,14 @@ const Nav = () => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink activeClassName="selected" to="/jakeperalta">
+					<NavLink activeClassName="selected" to={`/${user.handle}`}>
 						<ProfileIcon /> <span>Profile</span>
 					</NavLink>
 				</li>
 				<li>
 					<Logout />
 				</li>
-				<li style={{display: ''}}>
+				<li style={{ display: "none" }}>
 					<ToggleTheme />
 				</li>
 			</ul>

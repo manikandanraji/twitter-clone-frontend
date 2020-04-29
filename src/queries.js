@@ -7,6 +7,17 @@ export const USER_LOGGED_IN = gql`
 	}
 `;
 
+export const USER = gql`
+	query user {
+		user {
+			id
+			handle
+			avatar
+			fullname
+		}
+	}
+`;
+
 export const LOGIN = gql`
 	mutation login($email: String!, $password: String!) {
 		login(email: $email, password: $password) {
@@ -14,6 +25,8 @@ export const LOGIN = gql`
 			user {
 				id
 				handle
+				avatar
+				fullname
 			}
 		}
 	}
@@ -38,6 +51,7 @@ export const SIGNUP = gql`
 			user {
 				id
 				handle
+				avatar
 			}
 		}
 	}
@@ -162,6 +176,77 @@ export const ADD_COMMENT = gql`
 export const DELETE_COMMENT = gql`
 	mutation deleteComment($id: ID!) {
 		deleteComment(id: $id) {
+			id
+		}
+	}
+`;
+
+export const PROFILE = gql`
+	query profile($handle: String!) {
+		profile(handle: $handle) {
+			id
+			handle
+			firstname
+			lastname
+			fullname
+			avatar
+			coverPhoto
+			dob
+			location
+			website
+			isSelf
+			isFollowing
+			followersCount
+			followingCount
+			tweetsCount
+			bio
+			tweets {
+				id
+				text
+				tags
+				user {
+					id
+					fullname
+					handle
+					avatar
+				}
+				files {
+					id
+					url
+				}
+				likesCount
+				commentsCount
+				retweetsCount
+				isLiked
+				isRetweet
+				createdAt
+			}
+			createdAt
+		}
+	}
+`;
+
+export const EDIT_PROFILE = gql`
+	mutation editProfile(
+		$firstname: String
+		$lastname: String
+		$location: String
+		$dob: String
+		$bio: String
+		$website: String
+		$avatar: String
+		$coverPhoto: String
+	) {
+		editProfile(
+			firstname: $firstname
+			lastname: $lastname
+			location: $location
+			dob: $dob
+			bio: $bio
+			website: $website
+			avatar: $avatar
+			coverPhoto: $coverPhoto
+		) {
 			id
 		}
 	}
