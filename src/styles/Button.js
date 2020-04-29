@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export default styled.button`
 	padding: ${props => (props.sm ? "0.4rem 1.2rem" : "0.4rem 1.8rem")};
@@ -12,4 +12,10 @@ export default styled.button`
 	text-transform: uppercase;
 	cursor: pointer;
 	margin-bottom: 0.5rem;
+
+${props => props.relative && css`
+		position: relative;
+		left: 340px;
+		top: -50px;
+	`}
 `;

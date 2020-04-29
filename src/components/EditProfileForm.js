@@ -73,7 +73,6 @@ const EditProfileForm = ({ profile, history }) => {
 	}
 
 	const handleAvatar = async e => {
-		console.log(e.target.files);
 		setAvatar(await uploadImage(e.target.files[0]))
 	}
 

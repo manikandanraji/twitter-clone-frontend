@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
-import ProfileHeader from "./ProfileHeader";
+import ProfileInfo from "./ProfileInfo";
 import Tweet from "./Tweet";
 import { PROFILE } from "../queries";
 import Loader from "./Loader";
@@ -28,7 +28,6 @@ const Wrapper = styled.div`
 const Profile = () => {
 	const { handle } = useParams();
 	const { data, loading } = useQuery(PROFILE, { variables: { handle } });
-	console.log(data);
 
 	if (loading) return <Loader />;
 
@@ -42,12 +41,12 @@ const Profile = () => {
 					</span>
 				</div>
 			</Header>
-			<ProfileHeader profile={data && data.profile} />
-			{data &&
-				data.profile &&
-				data.profile.tweets &&
-				data.profile.tweets.length &&
-				data.profile.tweets.map(tweet => <Tweet key={tweet.id} tweet={tweet}/>)}
+			<ProfileInfo profile={data && data.profile} />
+			{data && data.profile && data.profile.tweets && data.profile.tweets.length
+				? data.profile.tweets.map(tweet => (
+						<Tweet key={tweet.id} tweet={tweet} />
+				  ))
+				: null}
 		</Wrapper>
 	);
 };

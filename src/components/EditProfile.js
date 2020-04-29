@@ -38,8 +38,6 @@ const EditProfile = () => {
 		variables: { handle: user.handle }
 	});
 
-	console.log(data);
-
 	if (loading) return <Loader />;
 
 	return (

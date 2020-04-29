@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import useInput from "../hooks/useInput";
 import Button from "../styles/Button";
 import { UploadFileIcon } from "./Icons";
 import { NEW_TWEET, FEED } from "../queries";
-import { CLOUDINARY_URL } from "../config";
 import { displayError } from "../utils";
 import { USER } from "../queries";
 import Avatar from "../styles/Avatar";
+import { uploadImage } from '../utils';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -93,36 +92,8 @@ const NewTweet = () => {
 	};
 
 	const handleTweetFiles = async e => {
-		const data = new FormData();
-		data.append("file", e.target.files[0]);
-		data.append("upload_preset", "twitter-build");
-
-		let toastId = null;
-
-		const {
-			data: { secure_url }
-		} = await axios.request({
-			method: "POST",
-			url: CLOUDINARY_URL,
-			data,
-			onUploadProgress: p => {
-				const progress = p.loaded / p.total;
-
-				if (toastId === null) {
-					toastId = toast("Upload in progress", {
-						progress: progress,
-						bodyClassName: "upload-progress-bar"
-					});
-				} else {
-					toast.update(toastId, {
-						progress: progress
-					});
-				}
-			}
-		});
-
-		setTweetFiles([...tweetFiles, secure_url]);
-		toast.dismiss(toastId);
+		const imageUrl = await uploadImage(e.target.files[0]);
+		setTweetFiles(...tweetFiles, imageUrl);
 	};
 
 	const {

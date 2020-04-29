@@ -16,7 +16,6 @@ const MasterTweet = () => {
 	const { tweetId } = useParams();
 
 	const { data, loading } = useQuery(TWEET, { variables: { id: tweetId } });
-	console.log(data)
 
 	const comments =
 		data && data.tweet && data.tweet.comments && data.tweet.comments.length

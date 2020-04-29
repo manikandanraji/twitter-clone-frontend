@@ -25,13 +25,11 @@ export const uploadImage = async file => {
 			const progress = p.loaded / p.total;
 
 			if (toastId === null) {
-				console.log("toast....");
 				toastId = toast("Upload in progress", {
 					progress,
 					bodyClassName: "upload-progress-bar"
 				});
 			} else {
-				console.log("uplaod toasts...");
 				toast.update(toastId, {
 					progress
 				});

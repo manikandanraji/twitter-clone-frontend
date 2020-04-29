@@ -12,7 +12,6 @@ const Wrapper = styled.div`
 
 const FeedList = () => {
 	const { data, loading } = useQuery(FEED);
-	console.log(data);
 
 	if (loading) return <Loader />;
 

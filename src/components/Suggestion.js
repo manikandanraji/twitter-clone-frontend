@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import WhoToFollow from "./WhoToFollow";
 
 const Wrapper = styled.div`
 	border-left: 1px solid ${props => props.theme.tertiaryColor};
@@ -11,7 +12,11 @@ const Wrapper = styled.div`
 `;
 
 const Suggestion = () => {
-	return <Wrapper>This is the suggestion component</Wrapper>;
+	return (
+		<Wrapper>
+			<WhoToFollow />
+		</Wrapper>
+	);
 };
 
 export default Suggestion;

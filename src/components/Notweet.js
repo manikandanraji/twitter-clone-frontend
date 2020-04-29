@@ -4,12 +4,11 @@ import styled from "styled-components";
 const Wrapper = styled.div`
 	height: 70vh;
 	border-right: 1px solid ${props => props.theme.tertiaryColor};
-	font-size: 1.3rem;
+	font-size: 1.1rem;
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-font-style: italic;
 `;
 
 const Notweet = () => (
