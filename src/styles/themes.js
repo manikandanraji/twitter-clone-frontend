@@ -15,5 +15,5 @@ export const darkTheme = {
 	secondaryColor: "#657786",
 	tertiaryColor: "#38444D",
 	tertiaryColor2: "#202E3A",
-	overlay: "rgba(110, 118, 125, 0.4)"
+	overlay: "rgba(110, 118, 125, 0.4)",
 };

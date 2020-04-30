@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import { USERS } from "../queries";
 import Loader from "./Loader";
 import Header from "./Header";
 import Avatar from "../styles/Avatar";
-import Follow from "./Follow";
+import Follow from "./Profile/Follow";
+import { USERS } from "../queries/others";
 
 const Wrapper = styled.div`
 	width: 350px;
 	background: ${props => props.theme.tertiaryColor2};
 	border-radius: 10px;
-	box-shadow: ${props => props.theme.bs1};
 
 	div:last-child {
 		border-bottom: none;
@@ -28,8 +28,8 @@ const UserWrapper = styled.div`
 
 	button {
 		position: absolute;
-		top: 20px;
-		left: 220px;
+		top: 24px;
+		left: 225px;
 	}
 
 	.avatar-handle {
@@ -44,20 +44,35 @@ const UserWrapper = styled.div`
 		display: flex;
 		flex-direction: column;
 
+		span:first-child {
+			font-weight: 500;
+		}
+
 		span.secondary {
 			color: ${props => props.theme.secondaryColor};
 		}
 	}
 `;
 
-const User = ({ user }) => (
+export const User = ({ user }) => (
 	<UserWrapper>
 		<div className="avatar-handle">
-			<Avatar src={user && user.avatar} alt="avatar" />
+			<Link to={`/${user && user.handle}`}>
+				<Avatar src={user && user.avatar} alt="avatar" />
+			</Link>
 			<div className="handle-fullname">
-				<span>{user && user.fullname}</span>
+				<Link to={`/${user && user.handle}`}>
+					<span>{user && user.fullname}</span>
+				</Link>
 				<span className="secondary">@{user && user.handle}</span>
-			  <Follow sm id={user && user.id} isFollowing={user && user.isFollowing} />
+
+				{user && !user.isSelf ? (
+					<Follow
+						sm
+						id={user && user.id}
+						isFollowing={user && user.isFollowing}
+					/>
+				) : null}
 			</div>
 		</div>
 	</UserWrapper>

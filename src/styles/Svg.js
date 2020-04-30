@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Svg = styled.svg`
 	fill: ${props => (props.color ? props.color : props.theme.primaryColor)};
 	width: 18px;
-	height: $18px;
+	height: 18px;
 	cursor: ${props => (props.loading ? "not-allowed" : "pointer")};
 `;
 

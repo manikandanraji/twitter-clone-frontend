@@ -7,4 +7,9 @@ export default styled.img`
 	border-radius: 50%;
 	margin-right: 1rem;
 	margin-bottom: 1rem;
+
+	@media screen and (max-width: 530px) {
+		height: ${props => (props.lg ? "110px" : "40px")};
+		width: ${props => (props.lg ? "110px" : "40px")};
+	}
 `;

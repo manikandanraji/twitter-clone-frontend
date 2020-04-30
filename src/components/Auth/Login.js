@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 import useInput from "../../hooks/useInput";
 import Input from ".././Input";
 import Button from "../../styles/Button";
-import { Form } from "./Auth";
-import { LOGIN } from "../../queries";
+import Form from "../../styles/Form";
 import { displayError } from "../../utils";
+import { LOGIN } from "../../queries/auth";
 
 export default ({ changeToSignup }) => {
 	const email = useInput("");
@@ -64,11 +64,11 @@ export default ({ changeToSignup }) => {
 				onChange={password.onChange}
 			/>
 
-			<Button outline disabled={loading} type="submit">
+			<Button xl outline disabled={loading} type="submit">
 				{loading ? "Logging in" : "Login"}
 			</Button>
 			<span>or</span>
-			<Button type="button" onClick={changeToSignup}>
+			<Button xl type="button" onClick={changeToSignup}>
 				Signup
 			</Button>
 		</Form>

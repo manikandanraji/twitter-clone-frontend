@@ -74,7 +74,9 @@ export default createGlobalStyle`
 		display: none;
 	}
 
-	.global-border {
-		border-left: ${props => props.theme.tertiaryColor};
-	}
+	@media screen and (max-width: 769px) {
+		body {
+			font-size: 0.9rem;
+		}
+}
 `;

@@ -12,10 +12,23 @@ export default styled.button`
 	text-transform: uppercase;
 	cursor: pointer;
 	margin-bottom: 0.5rem;
+	width: ${props => (props.xl ? "100%" : "none")};
 
-${props => props.relative && css`
-		position: relative;
-		left: 340px;
-		top: -50px;
-	`}
+	${props =>
+		props.relative &&
+		css`
+			position: relative;
+			left: 52%;
+		`}
+
+	@media screen and (max-width: 530px) {
+		font-size: 0.8rem;
+
+		${props =>
+			props.relative &&
+			css`
+				position: relative;
+				left: 32%;
+			`}
+	}
 `;

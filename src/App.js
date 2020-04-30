@@ -7,7 +7,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import { ThemeContext } from "./context/ThemeContext";
 import Router from "./Route";
 import Auth from "./components/Auth/Auth";
-import { USER_LOGGED_IN } from "./queries";
+import { USER_LOGGED_IN } from "./queries/client";
 
 const App = () => {
 	const { theme } = useContext(ThemeContext);

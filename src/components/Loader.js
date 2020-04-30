@@ -18,9 +18,9 @@ const Wrapper = styled.div`
 		width: 34px;
 		height: 34px;
 		position: absolute;
-		top: 50%;
+		top: 60%;
+		left: 43%;
 		opacity: 0.8;
-		left: 50%;
 		transform: translateX(-50%) translateY(-50%);
 		animation: ${rotateABD} 2s linear infinite;
 	}
