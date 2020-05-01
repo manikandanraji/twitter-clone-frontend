@@ -18,7 +18,6 @@ If you are looking for the backend repo, it lives here [backend](https://github.
 2. GraphQLServer - graphql-yoga
 3. Authentication - JWT 
 4. Image upload - Cloudinary
-5. Editor - the mighty "VIM" 
 
 # You can do these things
 - Login / Signup
