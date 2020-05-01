@@ -20,6 +20,18 @@ If you are looking for the backend repo, it lives here [backend](https://github.
 4. Image upload - Cloudinary
 5. Editor - the mighty "VIM" 
 
+# You can do these things
+- Login / Signup
+- New Tweet
+- Like
+- Retweet
+- Comment
+- View Profile
+- Edit Profile
+- Search by users, tags, people
+- Toggle between light and dark mode
+- Cycle through five different accent colors
+
 # Look at the UI
 
 ## Dark Mode
@@ -33,14 +45,10 @@ If you are looking for the backend repo, it lives here [backend](https://github.
 ## Mobile Layout
 ![Mobile](screenshots/mobile_layout.png)
 
-# Core functionality of the web app
-- Login / Signup
-- New Tweet
-- Like
-- Retweet
-- Comment
-- View Profile
-- Edit Profile
-- Search by users, tags, people
-- Toggle between light and dark mode
-- Cycle through five different accent colors
+# TODO
+- Real-time notifications using GraphQL subscriptions
+- Bookmark tweeets
+- Show retweets on user profile
+- Show trending tags
+- Better mobile support
+- Add OLED theme
