@@ -13,21 +13,21 @@ const rotateABD = keyframes`
 `;
 
 const Wrapper = styled.div`
-	svg {
-		fill: ${props => props.theme.accentColor};
-		width: 34px;
-		height: 34px;
-		position: absolute;
-		top: 60%;
-		left: 43%;
-		opacity: 0.8;
-		transform: translateX(-50%) translateY(-50%);
-		animation: ${rotateABD} 2s linear infinite;
-	}
+  svg {
+    fill: ${(props) => props.theme.accentColor};
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 60%;
+    left: 43%;
+    opacity: 0.8;
+    transform: translateX(-50%) translateY(-50%);
+    animation: ${rotateABD} 2s linear infinite;
+  }
 `;
 
 export default () => (
-	<Wrapper>
-		<LoadingIcon />
-	</Wrapper>
+  <Wrapper>
+    <LoadingIcon />
+  </Wrapper>
 );

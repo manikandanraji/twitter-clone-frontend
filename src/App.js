@@ -10,28 +10,28 @@ import Auth from "./components/Auth/Auth";
 import { USER_LOGGED_IN } from "./queries/client";
 
 const App = () => {
-	const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
-	const {
-		data: { isLoggedIn }
-	} = useQuery(USER_LOGGED_IN);
+  const {
+    data: { isLoggedIn },
+  } = useQuery(USER_LOGGED_IN);
 
-	return (
-		<StyledThemeProvider theme={theme}>
-			<GlobalStyle
-				background={theme.background}
-				primaryColor={theme.primaryColor}
-				font={theme.font}
-			/>
-			<ToastContainer
-				toastClassName="toast-style"
-				autoClose={2000}
-				closeButton={false}
-				draggable={false}
-			/>
-			{isLoggedIn ? <Router /> : <Auth />}
-		</StyledThemeProvider>
-	);
+  return (
+    <StyledThemeProvider theme={theme}>
+      <GlobalStyle
+        background={theme.background}
+        primaryColor={theme.primaryColor}
+        font={theme.font}
+      />
+      <ToastContainer
+        toastClassName="toast-style"
+        autoClose={2000}
+        closeButton={false}
+        draggable={false}
+      />
+      {isLoggedIn ? <Router /> : <Auth />}
+    </StyledThemeProvider>
+  );
 };
 
 export default App;

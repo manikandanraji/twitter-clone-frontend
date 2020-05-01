@@ -11,38 +11,38 @@ import AddComment from "../Comment/AddComment";
 import { sortFn } from "../../utils";
 
 const Wrapper = styled.div`
-	margin-bottom: 7rem;
+  margin-bottom: 7rem;
 `;
 
 const MasterTweet = () => {
-	const { tweetId } = useParams();
+  const { tweetId } = useParams();
 
-	const { data, loading } = useQuery(TWEET, { variables: { id: tweetId } });
+  const { data, loading } = useQuery(TWEET, { variables: { id: tweetId } });
 
-	const comments =
-		data && data.tweet && data.tweet.comments && data.tweet.comments.length
-			? data.tweet.comments
-			: [];
-	comments.sort(sortFn);
+  const comments =
+    data && data.tweet && data.tweet.comments && data.tweet.comments.length
+      ? data.tweet.comments
+      : [];
+  comments.sort(sortFn);
 
-	return (
-		<Wrapper>
-			<Header>
-				<span>Tweet</span>
-			</Header>
-			{loading ? (
-				<Loader />
-			) : (
-				<>
-					<Tweet tweet={data && data.tweet} />
-					<AddComment id={data && data.tweet && data.tweet.id} />
-					{comments.map(comment => (
-						<Comment key={comment.id} comment={comment} />
-					))}
-				</>
-			)}
-		</Wrapper>
-	);
+  return (
+    <Wrapper>
+      <Header>
+        <span>Tweet</span>
+      </Header>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Tweet tweet={data && data.tweet} />
+          <AddComment id={data && data.tweet && data.tweet.id} />
+          {comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
+        </>
+      )}
+    </Wrapper>
+  );
 };
 
 export default MasterTweet;

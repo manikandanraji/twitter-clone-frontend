@@ -7,23 +7,23 @@ import Tweet from "./Tweet/Tweet";
 import CustomResponse from "./CustomResponse";
 
 const Wrapper = styled.div`
-	margin-bottom: 7rem;
+  margin-bottom: 7rem;
 `;
 
 const FeedList = () => {
-	const { data, loading } = useQuery(FEED);
+  const { data, loading } = useQuery(FEED);
 
-	if (loading) return <Loader />;
+  if (loading) return <Loader />;
 
-	return (
-		<Wrapper>
-			{data && data.feed && data.feed.length ? (
-				data.feed.map(tweet => <Tweet key={tweet.id} tweet={tweet} />)
-			) : (
-				<CustomResponse text="Follow some people to get some feed updates" />
-			)}
-		</Wrapper>
-	);
+  return (
+    <Wrapper>
+      {data && data.feed && data.feed.length ? (
+        data.feed.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)
+      ) : (
+        <CustomResponse text="Follow some people to get some feed updates" />
+      )}
+    </Wrapper>
+  );
 };
 
 export default FeedList;
