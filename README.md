@@ -64,7 +64,7 @@ export const CLOUDINARY_URL =
 # TODO
 
 - Real-time notifications using GraphQL subscriptions
-- Bookmark tweeets
+- Bookmark tweets
 - Show retweets on user profile
 - Show trending tags
 - Better mobile support
