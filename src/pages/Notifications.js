@@ -6,7 +6,7 @@ const Wrapper = styled.div`
 `;
 
 const Notifications = () => {
-  return <Wrapper>This is the Notifications component</Wrapper>;
+  return <Wrapper>This feature is not yet implemented</Wrapper>;
 };
 
 export default Notifications;

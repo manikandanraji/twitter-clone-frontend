@@ -5,6 +5,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import useInput from "../../hooks/useInput";
 import Button from "../../styles/Button";
+import TweetFile from "../../styles/TweetFile";
 import { UploadFileIcon } from "../Icons";
 import { displayError } from "../../utils";
 import Avatar from "../../styles/Avatar";
@@ -36,14 +37,6 @@ const Wrapper = styled.div`
   .new-tweet-action {
     display: flex;
     align-items: center;
-  }
-
-  .img-preview {
-    width: 500px;
-    height: 285px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin: 1rem 0;
   }
 
   svg {
@@ -115,7 +108,7 @@ const NewTweet = () => {
           />
 
           {tweetFiles[0] && (
-            <img class="img-preview" src={tweetFiles[0]} alt="preview" />
+            <TweetFile newtweet src={tweetFiles[0]} alt="preview" />
           )}
 
           <div className="new-tweet-action">

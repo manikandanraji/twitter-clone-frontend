@@ -6,7 +6,7 @@ const Wrapper = styled.div`
 `;
 
 const Bookmarks = () => {
-  return <Wrapper>This is the Bookmarks component</Wrapper>;
+  return <Wrapper>This feature is not yet implemented</Wrapper>;
 };
 
 export default Bookmarks;
