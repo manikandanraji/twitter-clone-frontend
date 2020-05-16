@@ -1,5 +1,4 @@
 import axios from "axios";
-import { CLOUDINARY_URL } from "../config";
 import { toast } from "react-toastify";
 
 export const displayError = (err) =>
@@ -19,7 +18,7 @@ export const uploadImage = async (file) => {
   let toastId = null;
   const { data } = await axios.request({
     method: "POST",
-    url: CLOUDINARY_URL,
+    url: REACT_APP_CLOUDINARY_URL,
     data: formData,
     onUploadProgress: (p) => {
       const progress = p.loaded / p.total;
