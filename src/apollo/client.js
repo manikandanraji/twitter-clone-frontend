@@ -1,12 +1,12 @@
 import ApolloClient from "apollo-boost";
 import { InMemoryCache } from "apollo-boost";
-import { GRAPHQL_SERVER } from "../config";
+import { PROD, DEV } from "../config";
 
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   cache,
-  uri: GRAPHQL_SERVER,
+	uri: process.env.NODE_ENV === 'development' ? DEV : PROD
   request: (operation) => {
     const token = localStorage.getItem("token");
     operation.setContext({
