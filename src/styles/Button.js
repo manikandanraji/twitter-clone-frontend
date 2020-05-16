@@ -39,7 +39,7 @@ export default styled.button`
       props.relative &&
       css`
         position: relative;
-        left: 22%;
+        left: 17%;
       `}
   }
 `;
