@@ -18,7 +18,7 @@ export const uploadImage = async (file) => {
   let toastId = null;
   const { data } = await axios.request({
     method: "POST",
-    url: REACT_APP_CLOUDINARY_URL,
+    url: process.env.REACT_APP_CLOUDINARY_URL,
     data: formData,
     onUploadProgress: (p) => {
       const progress = p.loaded / p.total;
