@@ -5,7 +5,7 @@ const cache = new InMemoryCache();
 
 const client = new ApolloClient({
 	cache,
-	uri: process.env.NODE_ENV === "development" ? process.env.REACT_APP_PROD : process.env.REACT_APP_DEV,
+	uri: process.env.REACT_APP_DEV,
 	request: operation => {
 		const token = localStorage.getItem("token");
 		operation.setContext({
