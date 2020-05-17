@@ -76,7 +76,7 @@ const NewTweet = () => {
         },
       });
 
-      toast.success("Your tweet has been posted 🥳");
+      toast.success("Your tweet has been posted");
     } catch (err) {
       return displayError(err);
     }

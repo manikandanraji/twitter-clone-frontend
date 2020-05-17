@@ -21,7 +21,7 @@ const DeleteTweet = ({ id }) => {
 
   const handleDeleteTweet = async () => {
     await deleteTweetMutation();
-    toast.success("Your tweet has been deleted 😉");
+    toast.success("Your tweet has been deleted");
   };
 
   return <TrashIcon loading={loading} onClick={handleDeleteTweet} />;

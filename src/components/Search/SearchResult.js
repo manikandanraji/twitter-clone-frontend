@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   }
 
   span {
-    display: block;
     cursor: pointer;
     margin-bottom: 0.4rem;
   }

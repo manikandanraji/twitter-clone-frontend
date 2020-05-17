@@ -80,7 +80,7 @@ const AddComment = ({ id }) => {
         },
       });
 
-      toast.success("Your reply has been added 🥳");
+      toast.success("Your reply has been added");
     } catch (err) {
       return displayError(err);
     }

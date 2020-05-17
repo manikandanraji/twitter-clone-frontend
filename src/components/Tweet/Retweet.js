@@ -18,10 +18,10 @@ const Retweet = ({ id, isRetweet, retweetsCount }) => {
       setRetweet(!retweet);
       if (retweet) {
         setRetweetsCount(retweetsCountState - 1);
-        toast.success("Retweet removed 😈");
+        toast.success("Retweet removed");
       } else {
         setRetweetsCount(retweetsCountState + 1);
-        toast.success("Retweet done 🥳");
+        toast.success("Retweet done");
       }
     } catch (err) {
       return displayError(err);

@@ -38,7 +38,7 @@ export default ({ changeToLogin }) => {
       !email.value ||
       !password.value
     ) {
-      return toast.error("You need to fill in all the fields 😈");
+      return toast.error("You need to fill in all the fields");
     }
 
     try {
@@ -52,7 +52,7 @@ export default ({ changeToLogin }) => {
         },
       });
 
-      toast.success("You are logged in 🥳");
+      toast.success("You are logged in");
     } catch (err) {
       return displayError(err);
     }

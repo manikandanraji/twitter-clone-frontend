@@ -6,29 +6,26 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { Wrapper } from "../ToggleTheme";
 
 const Logout = () => {
-  const { theme } = useContext(ThemeContext);
+	const { theme } = useContext(ThemeContext);
 
-  const client = new useApolloClient();
+	const client = new useApolloClient();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    client.writeData({
-      data: {
-        isLoggedIn: false,
-      },
-    });
-    toast.success("You are logged out.");
-    setTimeout(() => {
-      window.location = "/";
-    }, 2100);
-  };
+	const handleLogout = () => {
+		localStorage.clear();
+		client.writeData({
+			data: {
+				isLoggedIn: false
+			}
+		});
+		toast.success("You are logged out");
+	};
 
-  return (
-    <Wrapper onClick={handleLogout}>
-      <UserIcon sm color={theme.accentColor} />
-      <p>Logout</p>
-    </Wrapper>
-  );
+	return (
+		<Wrapper onClick={handleLogout}>
+			<UserIcon sm color={theme.accentColor} />
+			<p>Logout</p>
+		</Wrapper>
+	);
 };
 
 export default Logout;

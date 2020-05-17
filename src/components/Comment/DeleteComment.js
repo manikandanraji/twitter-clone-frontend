@@ -34,7 +34,7 @@ const DeleteComment = ({ id }) => {
 
   const handleDeleteComment = async () => {
     await deleteCommentMutation();
-    toast.success("Your comment has been deleted 😉");
+    toast.success("Your comment has been deleted");
   };
 
   return <TrashIcon loading={loading} onClick={handleDeleteComment} />;

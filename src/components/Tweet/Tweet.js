@@ -114,10 +114,11 @@ const Tweet = ({ tweet }) => {
 			<Link to={`/${handle}`}>
 				<Avatar className="avatar" src={user && user.avatar} alt="avatar" />
 			</Link>
+
 			<div className="tweet-info">
 				<div className="tweet-info-user">
-					<span className="username">{user && user.fullname}</span>
 					<Link to={`/${handle}`}>
+						<span className="username">{user && user.fullname}</span>
 						<span className="secondary">{`@${handle}`}</span>
 						<span className="secondary">{moment(createdAt).fromNow()}</span>
 					</Link>
@@ -128,7 +129,7 @@ const Tweet = ({ tweet }) => {
 				</Link>
 
 				<div className="tags">
-					{tags && tags.length
+					{tags.length
 						? tags.map(tag => (
 								<span key={tag} className="tag">
 									{tag}
@@ -139,11 +140,7 @@ const Tweet = ({ tweet }) => {
 
 				<Link to={`/${handle}/status/${id}`}>
 					{files && files.length && files[0] ? (
-						<TweetFile
-							ssName="tweet-file"
-							src={files[0].url}
-							alt="tweet-file"
-						/>
+						<TweetFile src={files[0].url} alt="tweet-file" />
 					) : null}
 				</Link>
 

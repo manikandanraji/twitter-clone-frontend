@@ -1,7 +1,9 @@
 # Twitter Clone - Frontend
 
 Built with React + Styled Components.
-If you are looking for the backend repo, it lives here [backend](https://github.com/manikandanraji/twitter-clone-backend)
+If you are looking for the backend repo, it lives here [backend](https://github.com/manikandanraji/twitter-clone-backend).
+
+Now the site is deployed, [Check it out](https://twitterclone22.netlify.com)
 
 # The Stack
 
@@ -31,21 +33,19 @@ If you are looking for the backend repo, it lives here [backend](https://github.
 - View Profile
 - Edit Profile
 - Search by users, tags, people
-- Toggle between light and dark mode
-- Cycle through five different accent colors
 
 # How to setup locally
 
-- Create a new file 'config.js' at src/config.js
+- Create a .env file at the root directory
 - Make sure you have these variables setup
 
 ```js
-export const GRAPHQL_SERVER = "YOUR_GRAPHQL_ENDPOINT";
-export const CLOUDINARY_URL =
-	"https://api.cloudinary.com/v1_1/${YOUR_CLOUD_NAME}/image/upload";
+REACT_APP_DEV=DEV_ENDPOINT
+REACT_APP_PROD=PRODUCTION_ENDPOINT
+REACT_APP_CLOUDINARY_URL=https://api.cloudinary.com/v1_1/YOURACCOUNT/image/upload
 ```
 
-- Then run 'npm install && npm start' to see the twitter clone in action.
+- Then run <code>npm install && npm start</code> to see the twitter clone in action.
 
 # Look at the UI
 

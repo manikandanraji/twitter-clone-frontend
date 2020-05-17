@@ -7,8 +7,10 @@ import Header from "./Header";
 import Avatar from "../styles/Avatar";
 import Follow from "./Profile/Follow";
 import { USERS } from "../queries/others";
+import Button from "../styles/Button";
 
 const Wrapper = styled.div`
+	margin-left: 0.4rem;
 	width: 350px;
 	background: ${props => props.theme.tertiaryColor2};
 	border-radius: 10px;
@@ -20,16 +22,13 @@ const Wrapper = styled.div`
 
 const UserWrapper = styled.div`
 	display: flex;
-	position: relative;
 	justify-content: space-between;
-	padding: 1rem;
+	padding: 1rem 1rem;
 	border-bottom: 1px solid ${props => props.theme.tertiaryColor};
 	font-size: 0.9rem;
 
 	button {
-		position: absolute;
-		top: 24px;
-		left: 225px;
+		align-self: flex-start;
 	}
 
 	.avatar-handle {
@@ -60,21 +59,24 @@ export const User = ({ user }) => (
 			<Link to={`/${user && user.handle}`}>
 				<Avatar src={user && user.avatar} alt="avatar" />
 			</Link>
+
 			<div className="handle-fullname">
 				<Link to={`/${user && user.handle}`}>
 					<span>{user && user.fullname}</span>
 				</Link>
 				<span className="secondary">@{user && user.handle}</span>
-
-				{user && !user.isSelf ? (
-					<Follow
-						sm
-						id={user && user.id}
-						isFollowing={user && user.isFollowing}
-					/>
-				) : null}
 			</div>
 		</div>
+
+		{user && !user.isSelf ? (
+			<Follow sm id={user && user.id} isFollowing={user && user.isFollowing} />
+		) : (
+			<Link to="/settings/profile">
+				<Button sm outline className="action-btn">
+					Edit Profile
+				</Button>
+			</Link>
+		)}
 	</UserWrapper>
 );
 
