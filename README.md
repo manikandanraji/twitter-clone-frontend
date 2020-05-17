@@ -1,9 +1,11 @@
 # Twitter Clone - Frontend
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c9d04c4d-788b-45f1-9477-7cdc22982721/deploy-status)](https://app.netlify.com/sites/twitterclone22/deploys)
+
 Built with React + Styled Components.
 If you are looking for the backend repo, it lives here [backend](https://github.com/manikandanraji/twitter-clone-backend).
 
-Now the site is deployed, [Check it out](https://twitterclone22.netlify.com)
+[Check out the deployed site](https://twitterclone22.netlify.com)
 
 # The Stack
 

@@ -14,8 +14,8 @@ export default createGlobalStyle`
 
 	body {
 		font-family: 'Poppins', sans-serif;
-		background-color: ${props => props.theme.background};
-		color: ${props => props.theme.primaryColor};
+		background-color: ${(props) => props.theme.background};
+		color: ${(props) => props.theme.primaryColor};
 		line-height: 1.8;
 		overflow-x: hidden;
 	}
@@ -25,11 +25,11 @@ export default createGlobalStyle`
 	}
 
 	body::-webkit-scrollbar-track {
-		background: ${props => props.theme.background};
+		background: ${(props) => props.theme.background};
 	}
 
 	body::-webkit-scrollbar-thumb {
-		background: ${props => props.theme.accentColor};
+		background: ${(props) => props.theme.accentColor};
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -50,8 +50,8 @@ export default createGlobalStyle`
   }
 
 	.toast-style {
-		background: ${props => props.theme.accentColor};
-		font-family: ${props => props.theme.font};
+		background: ${(props) => props.theme.accentColor};
+		font-family: ${(props) => props.theme.font};
 	}
 
 	.upload-progress-bar {
