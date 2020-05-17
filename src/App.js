@@ -12,8 +12,6 @@ import { USER_LOGGED_IN } from "./queries/client";
 const App = () => {
   const { theme } = useContext(ThemeContext);
 
-	console.log(process.env.NODE_ENV)
-
   const {
     data: { isLoggedIn },
   } = useQuery(USER_LOGGED_IN);
