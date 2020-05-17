@@ -21,15 +21,10 @@ export default () => {
     let newAccentColor;
 
     if (colors.indexOf(currentColor) === colors.length - 1) {
-      console.log("reaced here");
       newAccentColor = colors[0];
     } else {
-      console.log("reached here");
-      console.log(currentColor);
       newAccentColor = colors[colors.indexOf(currentColor) + 1];
     }
-
-    console.log(newAccentColor);
 
     setTheme({
       ...theme,
