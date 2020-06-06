@@ -35,7 +35,7 @@ const EditProfileForm = ({ profile, history }) => {
 	const handleEditProfile = async e => {
 		e.preventDefault();
 
-		if (!firstname.value && !lastname.value) {
+		if (!firstname.value || !lastname.value) {
 			return toast.error("You cannot leaveout firstname/lastname empty");
 		}
 
