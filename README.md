@@ -42,8 +42,8 @@ If you are looking for the backend repo, it lives here [backend](https://github.
 - Make sure you have these variables setup
 
 ```js
-REACT_APP_DEV=DEV_ENDPOINT
-REACT_APP_PROD=PRODUCTION_ENDPOINT
+REACT_APP_DEV=DEV_ENDPOINT //https://localhost:3000
+REACT_APP_PROD=PRODUCTION_ENDPOINT // production graphql server
 REACT_APP_CLOUDINARY_URL=https://api.cloudinary.com/v1_1/YOURACCOUNT/image/upload
 ```
 
