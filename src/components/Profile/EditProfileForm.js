@@ -14,140 +14,140 @@ import { uploadImage } from "../../utils";
 import { PROFILE, EDIT_PROFILE } from "../../queries/profile";
 
 const EditProfileForm = ({ profile, history }) => {
-	const [avatarState, setAvatar] = useState("");
-	const [coverPhotoState, setCoverPhoto] = useState("");
+  const [avatarState, setAvatar] = useState("");
+  const [coverPhotoState, setCoverPhoto] = useState("");
 
-	const firstname = useInput(profile && profile.firstname);
-	const lastname = useInput(profile && profile.lastname);
-	const location = useInput(profile && profile.location);
-	const website = useInput(profile && profile.website);
-	const dob = useInput(profile && profile.dob);
-	const avatar = useInput(profile && profile.avatar);
-	const bio = useInput(profile && profile.bio);
-	const coverPhoto = useInput(profile && profile.coverPhoto);
+  const firstname = useInput(profile && profile.firstname);
+  const lastname = useInput(profile && profile.lastname);
+  const location = useInput(profile && profile.location);
+  const website = useInput(profile && profile.website);
+  const dob = useInput(profile && profile.dob);
+  const avatar = useInput(profile && profile.avatar);
+  const bio = useInput(profile && profile.bio);
+  const coverPhoto = useInput(profile && profile.coverPhoto);
 
-	const handle = profile && profile.handle;
+  const handle = profile && profile.handle;
 
-	const [editProfileMutation, { loading }] = useMutation(EDIT_PROFILE, {
-		refetchQueries: [{ query: PROFILE, variables: { handle } }]
-	});
+  const [editProfileMutation, { loading }] = useMutation(EDIT_PROFILE, {
+    refetchQueries: [{ query: PROFILE, variables: { handle } }],
+  });
 
-	const handleEditProfile = async e => {
-		e.preventDefault();
+  const handleEditProfile = async (e) => {
+    e.preventDefault();
 
-		if (!firstname.value || !lastname.value) {
-			return toast.error("You cannot leaveout firstname/lastname empty");
-		}
+    if (!firstname.value || !lastname.value) {
+      return toast.error("You cannot leaveout firstname/lastname empty");
+    }
 
-		try {
-			await editProfileMutation({
-				variables: {
-					firstname: firstname.value,
-					lastname: lastname.value,
-					dob: dob.value,
-					bio: bio.value,
-					location: location.value,
-					website: website.value,
-					avatar: avatarState ? avatarState : avatar.value,
-					coverPhoto: coverPhotoState ? coverPhotoState : coverPhoto.value
-				}
-			});
+    try {
+      await editProfileMutation({
+        variables: {
+          firstname: firstname.value,
+          lastname: lastname.value,
+          dob: dob.value,
+          bio: bio.value,
+          location: location.value,
+          website: website.value,
+          avatar: avatarState ? avatarState : avatar.value,
+          coverPhoto: coverPhotoState ? coverPhotoState : coverPhoto.value,
+        },
+      });
 
-			toast.success("Your profile has been updated 🥳");
-		} catch (err) {
-			return displayError(err);
-		}
+      toast.success("Your profile has been updated 🥳");
+    } catch (err) {
+      return displayError(err);
+    }
 
-		[
-			firstname,
-			lastname,
-			dob,
-			location,
-			website,
-			avatar,
-			coverPhoto
-		].map(field => field.setValue(""));
+    [
+      firstname,
+      lastname,
+      dob,
+      location,
+      website,
+      avatar,
+      coverPhoto,
+    ].map((field) => field.setValue(""));
 
-		history.push(`/${handle}`);
-	};
+    history.push(`/${handle}`);
+  };
 
-	const handleCoverPhoto = async e => {
-		setCoverPhoto(await uploadImage(e.target.files[0]));
-	};
+  const handleCoverPhoto = async (e) => {
+    setCoverPhoto(await uploadImage(e.target.files[0]));
+  };
 
-	const handleAvatar = async e => {
-		setAvatar(await uploadImage(e.target.files[0]));
-	};
+  const handleAvatar = async (e) => {
+    setAvatar(await uploadImage(e.target.files[0]));
+  };
 
-	return (
-		<Form lg onSubmit={handleEditProfile}>
-			<div className="cover-photo">
-				<label htmlFor="cover-photo-input">
-					<CoverPhoto
-						src={coverPhotoState ? coverPhotoState : coverPhoto.value}
-						alt="cover"
-					/>
-				</label>
-				<input type="file" id="cover-photo-input" onChange={handleCoverPhoto} />
-			</div>
+  return (
+    <Form lg onSubmit={handleEditProfile}>
+      <div className="cover-photo">
+        <label htmlFor="cover-photo-input">
+          <CoverPhoto
+            src={coverPhotoState ? coverPhotoState : coverPhoto.value}
+            alt="cover"
+          />
+        </label>
+        <input type="file" id="cover-photo-input" onChange={handleCoverPhoto} />
+      </div>
 
-			<div className="avatar-input">
-				<label htmlFor="avatar-input-file">
-					<Avatar
-						lg
-						src={avatarState ? avatarState : avatar.value}
-						alt="avatar"
-					/>
-				</label>
-				<input type="file" id="avatar-input-file" onChange={handleAvatar} />
-			</div>
+      <div className="avatar-input">
+        <label htmlFor="avatar-input-file">
+          <Avatar
+            lg
+            src={avatarState ? avatarState : avatar.value}
+            alt="avatar"
+          />
+        </label>
+        <input type="file" id="avatar-input-file" onChange={handleAvatar} />
+      </div>
 
-			<Input
-				lg={true}
-				text="First Name"
-				value={firstname.value}
-				onChange={firstname.onChange}
-			/>
-			<Input
-				lg={true}
-				text="Last Name"
-				value={lastname.value}
-				onChange={lastname.onChange}
-			/>
-			<div className="bio-wrapper">
-				<label className="bio" htmlFor="bio">
-					Bio
-				</label>
-				<TextareaAutosize
-					id="bio"
-					placeholder="Bio"
-					value={bio.value}
-					onChange={bio.onChange}
-				/>
-			</div>
-			<Input
-				lg={true}
-				text="Website"
-				value={website.value}
-				onChange={website.onChange}
-			/>
-			<Input
-				lg={true}
-				text="Date of Birth"
-				value={dob.value}
-				onChange={dob.onChange}
-			/>
-			<Input
-				lg={true}
-				text="Location"
-				value={location.value}
-				onChange={location.onChange}
-			/>
-			<Button outline disabled={loading} type="submit">
-				{loading ? "Saving" : "Save"}
-			</Button>
-		</Form>
-	);
+      <Input
+        lg={true}
+        text="First Name"
+        value={firstname.value}
+        onChange={firstname.onChange}
+      />
+      <Input
+        lg={true}
+        text="Last Name"
+        value={lastname.value}
+        onChange={lastname.onChange}
+      />
+      <div className="bio-wrapper">
+        <label className="bio" htmlFor="bio">
+          Bio
+        </label>
+        <TextareaAutosize
+          id="bio"
+          placeholder="Bio"
+          value={bio.value}
+          onChange={bio.onChange}
+        />
+      </div>
+      <Input
+        lg={true}
+        text="Website"
+        value={website.value}
+        onChange={website.onChange}
+      />
+      <Input
+        lg={true}
+        text="Date of Birth"
+        value={dob.value}
+        onChange={dob.onChange}
+      />
+      <Input
+        lg={true}
+        text="Location"
+        value={location.value}
+        onChange={location.onChange}
+      />
+      <Button outline disabled={loading} type="submit">
+        {loading ? "Saving" : "Save"}
+      </Button>
+    </Form>
+  );
 };
 
 export default withRouter(EditProfileForm);
