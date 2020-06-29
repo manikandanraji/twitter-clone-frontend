@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useQuery } from "@apollo/react-hooks";
+import { useApolloClient, useQuery } from "@apollo/react-hooks";
 import { FEED } from "../queries/others";
 import Loader from "./Loader";
 import Tweet from "./Tweet/Tweet";
@@ -12,13 +12,24 @@ const Wrapper = styled.div`
 
 const FeedList = () => {
   const { data, loading } = useQuery(FEED);
+	const client = useApolloClient()
 
   if (loading) return <Loader />;
 
+	// logout the user if removed from db
+	if(data === undefined) {
+		localStorage.clear();
+		client.writeData({
+			data: {
+				isLoggedIn: false
+			}
+		});
+	}
+
   return (
     <Wrapper>
-      {data && data.feed && data.feed.length ? (
-        data.feed.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)
+      {data?.feed?.length ? (
+        data.feed?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)
       ) : (
         <CustomResponse text="Follow some people to get some feed updates" />
       )}
