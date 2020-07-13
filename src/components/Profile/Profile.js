@@ -9,7 +9,7 @@ import Loader from "../Loader";
 import { PROFILE } from "../../queries/profile";
 
 const Wrapper = styled.div`
-  margin-bottom: 7rem;
+	padding-bottom: 5rem;
 
   .profile-top {
     display: flex;

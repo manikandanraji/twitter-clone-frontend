@@ -7,15 +7,15 @@ import Header from "../components/Header";
 const Wrapper = styled.div``;
 
 const Home = () => {
-  return (
-    <Wrapper>
-      <Header>
-        <span>Home</span>
-      </Header>
-      <NewTweet />
-      <FeedList />
-    </Wrapper>
-  );
+	return (
+		<Wrapper>
+			<Header>
+				<span>Home</span>
+			</Header>
+			<NewTweet />
+			<FeedList />
+		</Wrapper>
+	);
 };
 
 export default Home;
