@@ -8,6 +8,8 @@ import { USER } from "../../queries/client";
 import { PROFILE } from "../../queries/profile";
 
 const Wrapper = styled.div`
+	padding-bottom: 5rem;
+
 	.flex-wrapper {
 		display: flex;
 		justify-content: center;
