@@ -29,7 +29,7 @@ const FeedList = () => {
   return (
     <Wrapper>
       {data?.feed?.length ? (
-        data.feed?.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)
+        data.feed.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)
       ) : (
         <CustomResponse text="Follow some people to get some feed updates" />
       )}

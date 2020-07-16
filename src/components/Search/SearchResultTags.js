@@ -18,7 +18,7 @@ const SearchResultTags = ({ loading, tags }) => {
 
   return (
     <Wrapper>
-      {tags && tags.searchByTag && tags.searchByTag.length ? (
+      {tags?.searchByTag?.length ? (
         tags.searchByTag.map((tweet) => <Tweet key={tweet.id} tweet={tweet} />)
       ) : (
         <CustomResponse text="No tweets found for that tag, try a different search" />

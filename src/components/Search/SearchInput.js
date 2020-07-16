@@ -85,9 +85,9 @@ const SearchInput = () => {
         searchTagLoading={searchTagLoading}
         searchTweetLoading={searchTweetLoading}
         searchUserLoading={searchUserLoading}
-        tags={searchTagData && searchTagData}
-        users={searchUserData && searchUserData}
-        tweets={searchTweetData && searchTweetData}
+        tags={searchTagData}
+        users={searchUserData}
+        tweets={searchTweetData}
       />
     </>
   );
