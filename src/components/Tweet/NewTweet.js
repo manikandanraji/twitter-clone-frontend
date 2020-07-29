@@ -116,7 +116,7 @@ const NewTweet = () => {
               <label htmlFor="file-input">
                 <UploadFileIcon />
               </label>
-              <input id="file-input" type="file" onChange={handleTweetFiles} />
+              <input id="file-input" accept="image/*" type="file" onChange={handleTweetFiles} />
             </div>
             <Button sm disabled={loading}>
               Tweet

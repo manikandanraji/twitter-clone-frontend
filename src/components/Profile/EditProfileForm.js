@@ -88,7 +88,7 @@ const EditProfileForm = ({ profile, history }) => {
             alt="cover"
           />
         </label>
-        <input type="file" id="cover-photo-input" onChange={handleCoverPhoto} />
+        <input type="file" id="cover-photo-input" accept="image/*" onChange={handleCoverPhoto} />
       </div>
 
       <div className="avatar-input">
@@ -99,7 +99,7 @@ const EditProfileForm = ({ profile, history }) => {
             alt="avatar"
           />
         </label>
-        <input type="file" id="avatar-input-file" onChange={handleAvatar} />
+        <input type="file" accept="image/*" id="avatar-input-file" onChange={handleAvatar} />
       </div>
 
       <Input
